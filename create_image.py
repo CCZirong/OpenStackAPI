@@ -4,11 +4,11 @@ import requests
 class CreateImage:
     def __init__(self):
         self.url = "http://192.168.3.10"
-        self.headers = {}
         self.token = None
         self.image_id = None
-        self.image_name = "pvm_image01"
-        self.image_path = 'cirros-0.3.4-x86_64-disk.img'
+        self.headers = {}
+        self.image_path = "./cirros-0.3.4-x86_64-disk.img"
+        self.image_name = "test01"
 
     def get_token(self):
         body = {
@@ -38,8 +38,10 @@ class CreateImage:
         body = {
             'name': self.image_name,
             'disk_format': 'qcow2',
-            'container_format': 'bare'
+            'container_format': 'bare',
+            'visibility': 'private'
         }
+
         url = f"{self.url}:9292/v2/images"
         headers = {'x-auth-token': self.token}
         self.image_id = requests.post(url, headers=headers, json=body).json()['id']
@@ -47,12 +49,12 @@ class CreateImage:
 
     def put_image(self, url, headers):
         url_upload = "{}/{}/file".format(url, self.image_id)
-        with open(self.image_path, mode='rb') as f:
+        with open(self.image_path, mode="rb") as f:
             requests.put(url_upload, headers=headers, data=f)
 
     def list_image(self):
         url = f"{self.url}:9292/v2/images"
-        headers = {'x-auth-token': self.token}
+        headers = {"x-auth-token": self.token}
         images = requests.get(url, headers=headers).json()['images']
         for image in images:
             if image['name'] == self.image_name:
@@ -70,9 +72,7 @@ class CreateImage:
 
         self.post_image()
 
-        self.list_image()
-
-        print(self.delete_image())
+        print(self.list_image())
 
 
 if __name__ == '__main__':

@@ -4,8 +4,8 @@ import requests
 class CreateUser:
     def __init__(self):
         self.url = "http://192.168.3.10"
-        self.token = None
         self.headers = {}
+        self.token = None
 
     def get_token(self):
         body = {
@@ -15,8 +15,8 @@ class CreateUser:
                     'password': {
                         'user': {
                             'name': 'admin',
-                            'domain': {'name': 'demo'},
-                            'password': '000000'
+                            'password': '000000',
+                            'domain': {'name': 'demo'}
                         }
                     }
                 },
@@ -35,7 +35,7 @@ class CreateUser:
         body = {
             'user': {
                 'name': 'chinaskill',
-                'password': '123456',
+                'password': '000000',
                 'description': 'API create user!'
             }
         }

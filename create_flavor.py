@@ -4,8 +4,8 @@ import requests
 class CreateFlavor:
     def __init__(self):
         self.url = "http://192.168.3.10"
-        self.headers = {}
         self.token = None
+        self.headers = {}
 
     def get_token(self):
         body = {
@@ -15,8 +15,8 @@ class CreateFlavor:
                     'password': {
                         'user': {
                             'name': 'admin',
-                            'domain': {'name': 'demo'},
-                            'password': '000000'
+                            'password': '000000',
+                            'domain': {'name': 'demo'}
                         }
                     }
                 },

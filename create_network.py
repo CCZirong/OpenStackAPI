@@ -4,9 +4,9 @@ import requests
 class CreateNs:
     def __init__(self):
         self.url = "http://192.168.3.10"
+        self.headers = {}
         self.token = None
         self.network_id = None
-        self.headers = {}
 
     def get_token(self):
         body = {
@@ -47,16 +47,18 @@ class CreateNs:
 
     def create_subnet(self):
         body = {
-            'subnet': {
-                'name': 'pvm_intsubnet101',
-                'cidr': '192.168.4.0/24',
+            "subnet": {
+                "name": 'pvm_intsubnet',
+                'cidr': '10.20.3.0/24',
                 'enable_dhcp': 'true',
-                'gateway_ip': '192.168.4.1',
+                'gateway_ip': '10.20.3.1',
                 'ip_version': 4,
                 'network_id': self.network_id['network']['id'],
                 'allocation_pools': [
-                    {'start': '192.168.4.20',
-                     'end': '192.168.4.100'}
+                    {
+                        'start': '10.20.3.10',
+                        'end': '10.20.3.200'
+                    }
                 ]
             }
         }

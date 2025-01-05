@@ -15,9 +15,8 @@ class Member(Base):
 class DM_Manager:
     def __init__(self, db_name):
         self.db_name = db_name
-        self.engine = create_engine(f"mysql+pymysql://root:000000@localhost/{db_name}")
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+        self.engine = create_engine(f"mysql+pymysql://root:000000@localhost/{self.db_name}")
+        self.session = sessionmaker(bind=self.engine)()
 
     def create_table(self):
         Base.metadata.create_all(self.engine)
@@ -28,7 +27,7 @@ class DM_Manager:
         self.session.commit()
 
     def update_table_data(self, **kwargs):
-        id_info = kwargs.get('id')
+        id_info = kwargs.get("id")
         if id_info is not None:
             member = self.session.query(Member).filter_by(id=id_info).first()
             if member is not None:
@@ -49,9 +48,8 @@ class DM_Manager:
 
 
 if __name__ == '__main__':
-    db_manager = DM_Manager('nova')
+    db_manager = DM_Manager("nova")
     db_manager.create_table()
-    db_manager.insert_table_data(name="Openstack", level=2, place="test")
-    db_manager.update_table_data(id=1, level=4)
-    db_manager.run_table_raw_sql("select * from nova.member;")
+    db_manager.insert_table_data(name="OpenStack", level=2, place="test")
+    db_manager.update_table_data(id=1, level=5)
     # db_manager.delete_table()

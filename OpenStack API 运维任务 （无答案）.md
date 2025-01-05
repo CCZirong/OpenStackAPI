@@ -177,7 +177,7 @@ $ python3.7 onecloud.py create --name small --ram 2048 --disk 20 --vcpus 2 --id 
 $ python3.7 onecloud.py delete --id <flavor_id_or_name>
 ```
 
-```sql
+```shell
 # 列出所有规格
 $ curl -X GET http://192.168.3.10:9046/flavors
 # 查询规格详情

@@ -6,7 +6,7 @@ import openstack
 class OpenStackManager:
     def __init__(self):
         self.conn = openstack.connect(
-            auth_url="http://192.168.3.10:5000/v3",
+            auth_url="http://controller:5000/v3",
             project_name="admin",
             username="admin",
             password="000000",
@@ -15,11 +15,8 @@ class OpenStackManager:
         )
 
     def list_provider(self):
-        resp = []
         providers = self.conn.placement.resource_providers()
-        for provider in providers:
-            resp.append(provider)
-        return resp
+        return [provider.to_dict() if provider is not None else None for provider in providers]
 
     def get_provider(self, name):
         return self.conn.placement.find_resource_provider(name)
@@ -38,12 +35,12 @@ class OpenStackManager:
 
 
 if __name__ == '__main__':
-    parse = argparse.ArgumentParser()
-    parse.add_argument("command")
-    parse.add_argument("resource")
-    parse.add_argument("-p", "--provider", type=str, metavar="provider")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command")
+    parser.add_argument("resource")
+    parser.add_argument("-p", "--provider", type=str, metavar="provider")
 
-    args = parse.parse_args()
+    args = parser.parse_args()
     manager = OpenStackManager()
 
     if args.command == "get":

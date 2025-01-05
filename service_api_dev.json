@@ -1,0 +1,139 @@
+{
+    "kind": "Service",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "nginx-svc",
+        "namespace": "default",
+        "uid": "3217dd9b-0f5f-44be-abef-29fbb7dd7614",
+        "resourceVersion": "3993",
+        "creationTimestamp": "2024-12-07T16:38:52Z",
+        "labels": {
+            "app": "nginx-svc"
+        },
+        "managedFields": [
+            {
+                "manager": "python-requests",
+                "operation": "Update",
+                "apiVersion": "v1",
+                "time": "2024-12-07T16:38:52Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:labels": {
+                            ".": {},
+                            "f:app": {}
+                        }
+                    },
+                    "f:spec": {
+                        "f:internalTrafficPolicy": {},
+                        "f:ports": {
+                            ".": {},
+                            "k:{\"port\":5678,\"protocol\":\"TCP\"}": {
+                                ".": {},
+                                "f:name": {},
+                                "f:port": {},
+                                "f:protocol": {},
+                                "f:targetPort": {}
+                            }
+                        },
+                        "f:selector": {},
+                        "f:sessionAffinity": {},
+                        "f:type": {}
+                    }
+                }
+            }
+        ]
+    },
+    "spec": {
+        "ports": [
+            {
+                "name": "http",
+                "protocol": "TCP",
+                "port": 5678,
+                "targetPort": 8080
+            }
+        ],
+        "selector": {
+            "app": "nginx-svc"
+        },
+        "clusterIP": "10.96.192.192",
+        "clusterIPs": [
+            "10.96.192.192"
+        ],
+        "type": "ClusterIP",
+        "sessionAffinity": "None",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "internalTrafficPolicy": "Cluster"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}
+{
+    "kind": "Service",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "nginx-svc",
+        "namespace": "default",
+        "uid": "3217dd9b-0f5f-44be-abef-29fbb7dd7614",
+        "resourceVersion": "3996",
+        "creationTimestamp": "2024-12-07T16:38:52Z",
+        "managedFields": [
+            {
+                "manager": "python-requests",
+                "operation": "Update",
+                "apiVersion": "v1",
+                "time": "2024-12-07T16:38:52Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:spec": {
+                        "f:internalTrafficPolicy": {},
+                        "f:ports": {
+                            ".": {},
+                            "k:{\"port\":80,\"protocol\":\"TCP\"}": {
+                                ".": {},
+                                "f:name": {},
+                                "f:port": {},
+                                "f:protocol": {},
+                                "f:targetPort": {}
+                            }
+                        },
+                        "f:selector": {},
+                        "f:sessionAffinity": {},
+                        "f:type": {}
+                    }
+                }
+            }
+        ]
+    },
+    "spec": {
+        "ports": [
+            {
+                "name": "http",
+                "protocol": "TCP",
+                "port": 80,
+                "targetPort": 9090
+            }
+        ],
+        "selector": {
+            "app": "nginx-svc"
+        },
+        "clusterIP": "10.96.192.192",
+        "clusterIPs": [
+            "10.96.192.192"
+        ],
+        "type": "ClusterIP",
+        "sessionAffinity": "None",
+        "ipFamilies": [
+            "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "internalTrafficPolicy": "Cluster"
+    },
+    "status": {
+        "loadBalancer": {}
+    }
+}

@@ -130,7 +130,7 @@ ok
 
 （1）GET /user/，自行调用查询接口，查询指定名称的用户；返回信息以json格式输出到控制台。
 
-（2）POST /user/create，自行调用创建接口，创建名为chinaskilluser的用户，密码为123456，返回信息以json格式输出到控制台。
+（2）POST /user/create，自行调用创建接口，创建名为 chinaskilluser 的用户，密码为123456，返回信息以json格式输出到控制台。
 
 （3）DELETE /user/delete/，自行调用删除接口，删除指定名称的用户，若删除成功，返回信息输出到控制台。
 

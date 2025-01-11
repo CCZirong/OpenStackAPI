@@ -22,24 +22,24 @@ class DM_Manager:
         Base.metadata.create_all(self.engine)
 
     def insert_table_data(self, **kwargs):
-        member = Member(**kwargs)
+        member = Member(*kwargs)
         self.session.add(member)
         self.session.commit()
 
     def update_table_data(self, **kwargs):
-        id_info = kwargs.get("id")
-        if id_info is not None:
-            member = self.session.query(Member).filter_by(id=id_info).first()
+        id = kwargs.get('id')
+        if id is not None:
+            member = self.session.query(Member).filter_by(id=id).first()
             if member is not None:
                 for key, value in kwargs.items():
                     setattr(member, key, value)
                 self.session.commit()
             else:
-                return
+                pass
         else:
-            return
+            pass
 
-    def run_table_raw_sql(self, raw_sql: str):
+    def run_table_raw(self, raw_sql: str):
         self.session.execute(text(raw_sql))
         self.session.commit()
 
@@ -48,8 +48,9 @@ class DM_Manager:
 
 
 if __name__ == '__main__':
-    db_manager = DM_Manager("nova")
+    db_manager = DM_Manager('nova')
     db_manager.create_table()
-    db_manager.insert_table_data(name="OpenStack", level=2, place="test")
-    db_manager.update_table_data(id=1, level=5)
+    db_manager.insert_table_data(name="OpenStack", level=3, place="test")
+    db_manager.update_table_data(id=1, level=6)
+    db_manager.run_table_raw("select * from nova.member;")
     # db_manager.delete_table()

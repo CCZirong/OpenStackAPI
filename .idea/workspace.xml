@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cb6a905f-146b-41f4-a951-c19d21f28b86" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resource_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/resource_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenStack API 运维任务 （无答案）.md" beforeDir="false" afterPath="$PROJECT_DIR$/OpenStack API 运维任务 （无答案）.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql_db_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysql_db_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/user_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

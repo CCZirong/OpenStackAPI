@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
 import openstack
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -14,10 +14,10 @@ conn = openstack.connect(
 
 
 @app.route("/user/<name>", methods=["GET"])
-def git_user(name):
-    user_info = conn.identity.find_user(name)
-    if user_info is not None:
-        return jsonify(user_info)
+def list_user(name):
+    user = conn.identity.find_user(name)
+    if user is not None:
+        return jsonify(user)
 
 
 @app.route("/user/create", methods=["POST"])
@@ -27,15 +27,15 @@ def create_user():
         password="123456",
         domain_id="default"
     )
-    user = conn.identity.find_user(name_or_id=res.id)
+    user = conn.identity.find_user(res.id)
     return jsonify(user)
 
 
-@app.route("/user/delete/<name>", methods=["DELETE"])
+@app.route("/user/<name>", methods=["DELETE"])
 def delete_user(name):
-    user_info = conn.identity.find_user(name)
-    if user_info is not None:
-        res = conn.identity.delete_user(user_info)
+    user = conn.identity.find_user(name)
+    if user is not None:
+        res = conn.identity.delete_user(name)
         return jsonify({'msg': res})
 
 

@@ -3,7 +3,7 @@ import argparse
 import openstack
 
 
-class OpenStackManager:
+class ResourceManager:
     def __init__(self):
         self.conn = openstack.connect(
             auth_url="http://controller:5000/v3",
@@ -38,10 +38,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("command")
     parser.add_argument("resource")
-    parser.add_argument("-p", "--provider", type=str, metavar="provider")
+    parser.add_argument("-p", "--provider", required=True, metavar="provider")
 
     args = parser.parse_args()
-    manager = OpenStackManager()
+    manager = ResourceManager()
 
     if args.command == "get":
         if args.resource == "provider":

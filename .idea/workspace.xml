@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb6a905f-146b-41f4-a951-c19d21f28b86" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/openstackapi.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2024一带一路暨金砖大赛云计算技术服务（运维方向）华南区域选拔赛题目.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OpenStack API 运维任务 （无答案）.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_image_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_manager_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cirros-0.3.4-x86_64-disk.img" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_flavor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find-tst.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql_db_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx-deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resource_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sdk_manager_deployment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service_update.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test03.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test045.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_manager_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/resource_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -6,7 +6,7 @@ import openstack
 class CreateFlavorManager:
     def __init__(self):
         self.conn = openstack.connect(
-            auth_url="http://192.168.3.10:5000/v3",
+            auth_url="http://controller:5000/v3",
             project_name="admin",
             username="admin",
             password="000000",

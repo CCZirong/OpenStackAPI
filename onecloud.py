@@ -1,20 +1,12 @@
 import sys
 import argparse
-import openstack
 import uvicorn
+import openstack
 from fastapi import FastAPI
 from pydantic import BaseModel
 from tabulate import tabulate
 
 app = FastAPI()
-
-
-class CreateRequestFlavor(BaseModel):
-    id: str
-    name: str
-    ram: int
-    disk: int
-    vcpus: int
 
 
 def conn():
@@ -28,6 +20,14 @@ def conn():
     )
 
 
+class CreateFlavor(BaseModel):
+    id: str
+    name: str
+    ram: int
+    disk: int
+    vcpus: int
+
+
 @app.get("/flavors")
 def list_flavor():
     flavors = conn().compute.flavors()
@@ -36,7 +36,7 @@ def list_flavor():
             [flavor.id, flavor.name, flavor.ram, flavor.disk, flavor.vcpus]
             if flavor is not None else None for flavor in flavors
         ]
-        return tabulate(table, headers=["ID", "Name", "RAM", "Disk", "Ephemeral", "VCPUs", "Is Public"],
+        return tabulate(table, headers=['ID', 'Name', 'RAM', 'Disk', 'Ephemeral', 'VCPUs', 'Is Public'],
                         tablefmt="rounded_outline")
     return
 
@@ -54,13 +54,13 @@ def show_flavor(identifier: str):
 
 
 @app.post("/flavors")
-def create_flavor(flavor: CreateRequestFlavor):
+def create_flavor(flavor: CreateFlavor):
     return conn().compute.create_flavor(
+        flavor_id=flavor.id,
         name=flavor.name,
         ram=flavor.ram,
         disk=flavor.disk,
-        vcpus=flavor.vcpus,
-        flavor_id=flavor.id
+        vcpus=flavor.vcpus
     )
 
 
@@ -70,7 +70,6 @@ def delete_flavor(identifier):
     if flavor is not None:
         res = conn().compute.delete_flavor(flavor)
         return {'msg': res}
-    return {'msg': 'not data!'}
 
 
 def main():
@@ -89,7 +88,7 @@ def main():
     if args.flavor == "show" and args.id:
         print(show_flavor(args.id))
     if args.flavor == "create":
-        flavor_data = CreateRequestFlavor(id=args.id, name=args.name, ram=args.ram, disk=args.disk, vcpus=args.vcpus)
+        flavor_data = CreateFlavor(name=args.name, ram=args.ram, disk=args.disk, vcpus=args.vcpus, id=args.id)
         print(create_flavor(flavor_data))
     if args.flavor == "delete" and args.id:
         print(delete_flavor(args.id))

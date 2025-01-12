@@ -4,7 +4,7 @@ import argparse
 import openstack
 
 
-class OpenStackUserManager:
+class UserManager:
     def __init__(self):
         self.conn = openstack.connect(
             auth_url="http://controller:5000/v3",
@@ -16,11 +16,13 @@ class OpenStackUserManager:
         )
 
     def create_user(self, user_data):
-        return self.conn.identity.create_user(
+        res = self.conn.identity.create_user(
             name=user_data['name'],
             password=user_data['password'],
             description=user_data['description']
         )
+        if res is not None:
+            return self.conn.identity.find_user(res.id)
 
     def get_user(self, name):
         user_info = self.conn.identity.find_user(name)
@@ -28,7 +30,7 @@ class OpenStackUserManager:
 
     def get_all_user(self):
         users = self.conn.identity.users()
-        return [user.to_dict() for user in users]
+        return [user.to_dict() if user is not None else None for user in users]
 
     def delete_user(self, name):
         user = self.conn.identity.find_user(name)
@@ -55,26 +57,24 @@ if __name__ == '__main__':
     delete_parser.add_argument("-n", "--name", required=True)
 
     args = parser.parse_args()
-    manager = OpenStackUserManager()
+    manger = UserManager()
 
     if args.command == "create":
         if args.input:
-            response = manager.create_user(json.loads(args.input))
-            print(json.dumps(response, indent=4))
+            print(json.dumps(manger.create_user(json.loads(args.input)), indent=4))
     if args.command == "get":
-        user_info = manager.get_user(args.name)
+        user = manger.get_user(args.name)
         if args.output:
             with open(args.output, mode="w") as f:
-                json.dump(user_info, f, indent=4)
+                json.dump(user, f, indent=4)
         else:
-            print(json.dumps(user_info, indent=4))
+            print(json.dumps(user, indent=4))
     if args.command == "getall":
-        users = manager.get_all_user()
+        user = manger.get_all_user()
         if args.output:
             with open(args.output, mode="w") as f:
-                yaml.dump(users, f, indent=4)
+                yaml.dump(user, f, indent=4)
         else:
-            print(yaml.dump(users, default_flow_style=False))
+            print(yaml.dump(user, default_flow_style=False))
     if args.command == "delete":
-        if args.name:
-            print(manager.delete_user(args.name))
+        print(json.dumps(manger.delete_user(args.name), indent=4))
